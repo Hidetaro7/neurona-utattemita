@@ -7,6 +7,13 @@ import lyrics from "./lyrics.js"
   const songsSelector = document.querySelector("#songs-selector")
   const audio = document.createElement("audio");
 
+  let finalTranscript = '';
+
+
+
+  const SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
+  let recognition = new SpeechRecognition();
+
   /* 曲名をいれておく */
   Object.keys(lyrics).forEach(function (key) {
     const option = document.createElement("option");
@@ -21,12 +28,26 @@ import lyrics from "./lyrics.js"
     changeSong(songsSelector.value)
   }
 
+  const playClicked = () => {
+    startBtn.disabled = true;
+    recognition.start();
+    audio.play()
+  }
+  const pauseClicked = () => {
+    startBtn.disabled = false;
+    recognition.stop();
+    audio.pause()
+  }
+
 
   /* lyrics */
   const changeSong = (title) => {
+    pauseClicked()
     original.innerText = ""
+    resultDiv.innerText = ""
+    finalTranscript = ""
     songsSelector.value = title
-    audio.src="./audio/"+songsSelector.value+".mp4"
+    audio.src="./audio/"+songsSelector.value+".mp3"
     /* const tit = document.querySelector("#song-title");
     tit.innerText = lyrics[title].title; */
     const showLyric = lyrics[title].lyric.split("\n");
@@ -38,14 +59,9 @@ import lyrics from "./lyrics.js"
   }
 
 
-  const SpeechRecognition = webkitSpeechRecognition || SpeechRecognition;
-  let recognition = new SpeechRecognition();
-
   recognition.lang = 'ja-JP';
   recognition.interimResults = true;
   recognition.continuous = true;
-
-  let finalTranscript = ''; // 確定した(黒の)認識結果
 
   recognition.onresult = (event) => {
     let interimTranscript = ''; // 暫定(灰色)の認識結果
@@ -60,16 +76,15 @@ import lyrics from "./lyrics.js"
     resultDiv.innerHTML = finalTranscript + '<p style="color:#f30;">' + interimTranscript + '</p>';
   }
   recognition.onend = () => {
-    recognition.start();
+    //recognition.start();
   }
 
   startBtn.onclick = () => {
-    recognition.start();
-    audio.play()
-  }
+    playClicked()
+  };
+
   stopBtn.onclick = () => {
-    recognition.stop();
-    audio.pause()
+    pauseClicked()
   }
 
   changeSong("ikusenhitoyo")

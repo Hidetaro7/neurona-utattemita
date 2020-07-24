@@ -1,5 +1,5 @@
 const lyrics = {
-    strangeDay: {
+    /* strangeDay: {
         lyric: `乾く喉をこらえて私の心騒ぐの
         ためらいもせずカタチのないunder world
         
@@ -14,7 +14,7 @@ const lyrics = {
         I wanna see the end of day 
         見たこともないstrange day day…`,
         title: "Strange Day"
-    },
+    }, */
     ikusenhitoyo: {
         lyric: `乱れ咲く　天の川　瑠璃色に染めて
         睡蓮の花びらに　千歳の想い
@@ -41,7 +41,8 @@ const lyrics = {
         ＷＯＯ叫べ君に　進めこんな世界の片隅に　
         とどまっていたってしかたないよ`,
         title: "チケット"
-    },doowap: {
+    },
+    doowap: {
         lyric: `悲しくなって　ひとりここで 
         寂しくなって　答え見えずに
         
@@ -49,7 +50,10 @@ const lyrics = {
         星の下で
         　
         あの空がずっと僕らのことを見ていたって
-        未だに僕は君のことを見つけてないんだ`,
+        未だに僕は君のことを見つけてないんだ
+        
+        あの空がずっと僕を照らしてくれたって
+        小さな想いがはなれずにココにいるんだ`,
         title: "夏空のドゥーワップ"
     },
 

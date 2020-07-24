@@ -55,4 +55,8 @@ body {
   color: white;
   font-weight: bold;
 }
+
+.button:disabled {
+  background-color: #ccc;
+}
 /*# sourceMappingURL=style.css.map */
